@@ -36,6 +36,7 @@ One possible usecase is in Scala js projects to move html into their own file.
 e.g.
 
 ```scala
+import com.passivsystems.embed.Embed._
 import org.scalajs.dom
 def el[T <: dom.raw.Element](id: String) =
     dom.document.getElementById(id).asInstanceOf[T]

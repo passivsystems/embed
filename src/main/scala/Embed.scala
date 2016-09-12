@@ -62,8 +62,9 @@ package object Embed {
 
     def interpolateExpr(c: Context)(content: String): c.Expr[String] = {
       import c.universe._
-      val parts = content.split("\\$\\{([^\\}]*)\\}").toSeq
-      val args = "\\$\\{([^\\}]*)\\}".r.findAllMatchIn(content).map(_.group(1)).map(c.parse(_)).toSeq
+      val regex = "\\$\\{([^\\}]*)\\}"
+      val parts = content.split(regex).toSeq
+      val args = regex.r.findAllMatchIn(content).map(_.group(1)).map(c.parse(_)).toSeq
       c.Expr[String](q"scala.StringContext(..$parts).s(..$args)")
     }
 
