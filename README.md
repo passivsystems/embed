@@ -2,6 +2,14 @@
 
 Scala macro for embedding file content directly into a scala source file at compile time.
 
+## Add to sbt project
+
+add the following to build.sbt:
+```scala
+libraryDependencies += "com.github.passivsystems" % "embed" % "0.0.1"
+resolvers += "jitpack" at "https://jitpack.io"
+```
+
 ## Usage
 
 first import the macro:
@@ -45,10 +53,10 @@ val btnId = "uniqueId"
 // el[dom.raw.HTMLElement]("div").innerHTML = s"""
 // <button id="${btnId}">Click me</button>
 // """
-el[dom.raw.HTMLElement]("div").innerHTML = sEmbed("status.html")
+el[dom.raw.HTMLElement]("div").innerHTML = sEmbed("button.html")
 el[dom.raw.HTMLButtonElement](btnId).onclick = { event: MouseEvent => println("Clicked!") }
 ```
-where status.html:
+where button.html:
 ```html
 <button id="${btnId}">Click me</button>
 ```
